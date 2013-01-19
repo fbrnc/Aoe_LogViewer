@@ -1,0 +1,6 @@
+app/code/community/Aoe/LogViewer/								app/code/community/Aoe/LogViewer/
+app/etc/modules/*												app/etc/modules/
+app/design/adminhtml/default/default/template/aoe_scheduler/	app/design/adminhtml/default/default/template/aoe_scheduler/
+app/design/adminhtml/default/default/layout/aoe_scheduler/		app/design/adminhtml/default/default/layout/aoe_scheduler/
+skin/adminhtml/default/default/aoe_scheduler/					skin/adminhtml/default/default/aoe_scheduler/
+var/connect/*													var/connect/

@@ -1,0 +1,60 @@
+<?xml version="1.0" ?>
+<config>
+	<modules>
+		<Aoe_LogViewer>
+			<version>0.0.1</version>
+		</Aoe_LogViewer>
+	</modules>
+
+	<global>
+		<blocks>
+			<aoe_logviewer>
+				<class>Aoe_Scheduler_Block</class>
+			</aoe_logviewer>
+		</blocks>
+
+		<helpers>
+			<aoe_logviewer>
+				<class>Aoe_Scheduler_Helper</class>
+			</aoe_logviewer>
+		</helpers>
+
+		<models>
+			<aoe_logviewer>
+				<class>Aoe_Scheduler_Model</class>
+			</aoe_logviewer>
+		</models>
+	</global>
+
+	<admin>
+		<routers>
+			<adminhtml>
+				<args>
+					<modules>
+						<Aoe_Scheduler before="Mage_Adminhtml">Aoe_Scheduler_Adminhtml</Aoe_Scheduler>
+					</modules>
+				</args>
+			</adminhtml>
+		</routers>
+	</admin>
+
+	<adminhtml>
+		<translate>
+			<modules>
+				<aoe_logviewer>
+					<files>
+						<default>Aoe_Scheduler.csv</default>
+					</files>
+				</aoe_logviewer>
+			</modules>
+		</translate>
+		<layout>
+			<updates>
+				<aoe_logviewer>
+					<file>aoe_logviewer/aoe_logviewer.xml</file>
+				</aoe_logviewer>
+			</updates>
+		</layout>
+	</adminhtml>
+
+</config>
