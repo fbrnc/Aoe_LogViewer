@@ -1,0 +1,56 @@
+<?php /* @var $this Aoe_LogViewer_Block_Adminhtml_Menu */ ?>
+
+<div class="content-header">
+	<table cellspacing="0">
+		<tr>
+			<td style="width:50%;"><h3 class="icon-head head-permissions-role"><?php echo $this->__('Log Viewer') ?></h3></td>
+			<td class="form-buttons">
+
+
+				<script type="text/javascript">
+					var logFormData = <?php echo $this->getLogJson(); ?>;
+					window.onload = function () {
+						var logselect = document.getElementById('logselect');
+						logselect.options.add(new Option('', ''));
+						for (var key in logFormData) {
+							logselect.options.add(new Option(logFormData[key].name, logFormData[key].value));
+						}
+						logselect.onchange = getCommands;
+						getCommands();
+					}
+
+					function getCommands() {
+						var logselect = document.getElementById('logselect');
+						var selectedLog = logselect.options[logselect.selectedIndex].value;
+						var commandselect = document.getElementById('commandselect');
+						commandselect.options.length = 0;
+						commandselect.options.add(new Option('', ''));
+						for (var key in logFormData[selectedLog].commands) {
+							commandselect.options.add(new Option(logFormData[selectedLog].commands[key].name, logFormData[selectedLog].commands[key].value));
+						}
+					}
+				</script>
+
+				<div>
+				<form action="<?php echo $this->getUrl('*/*/set') ?>" method="post" id="aoe_logviewer_menu">
+
+					<?php echo $this->getBlockHtml('formkey')?>
+
+					<label for="log"><?php echo $this->__('Log:') ?></label>
+					<select name="log" id="logselect" class="required-entry"></select>
+
+					<label for="command"><?php echo $this->__('Command:') ?></label>
+					<select name="command" id="commandselect" class="required-entry"></select>
+
+					<button type="submit"><?php echo $this->__('Show Log'); ?></button>
+
+				</form>
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<script type="text/javascript">
+	var roleForm = new varienForm('aoe_logviewer_menu');
+</script>

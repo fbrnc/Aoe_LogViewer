@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<menu>
+		<system>
+			<children>
+				<aoe_logviewer translate="title">
+					<title>Log Viewer</title>
+					<sort_order>1</sort_order>
+					<action>adminhtml/logviewer/index</action>
+				</aoe_logviewer>
+			</children>
+		</system>
+	</menu>
+
+	<acl>
+		<resources>
+			<admin>
+				<children>
+					<system>
+						<children>
+							<aoe_logviewer translate="title" module="aoe_logviewer">
+								<title>AOE LogViewer</title>
+								<sort_order>1</sort_order>
+							</aoe_logviewer>
+						</children>
+					</system>
+				</children>
+			</admin>
+		</resources>
+	</acl>
+</config>

@@ -9,21 +9,85 @@
 	<global>
 		<blocks>
 			<aoe_logviewer>
-				<class>Aoe_Scheduler_Block</class>
+				<class>Aoe_LogViewer_Block</class>
 			</aoe_logviewer>
 		</blocks>
 
 		<helpers>
 			<aoe_logviewer>
-				<class>Aoe_Scheduler_Helper</class>
+				<class>Aoe_LogViewer_Helper</class>
 			</aoe_logviewer>
 		</helpers>
 
 		<models>
 			<aoe_logviewer>
-				<class>Aoe_Scheduler_Model</class>
+				<class>Aoe_LogViewer_Model</class>
 			</aoe_logviewer>
 		</models>
+
+		<aoe_logviewer>
+			<logs>
+				<system.log>
+					<label>system.log</label>
+					<file_path>###LOGDIR###/system.log</file_path>
+					<model>aoe_logviewer/log_file</model>
+					<sort_order>10</sort_order>
+					<!--<disabled>1</disabled>-->
+					<commands>
+						<tail>
+							<label>Last n lines (newest first)</label>
+							<command_string>tail -n %2$s '%1$s' | tac</command_string>
+							<model>aoe_logviewer/command_shell</model>
+							<sort_order>10</sort_order>
+							<!--<disabled>1</disabled>-->
+						</tail>
+						<tail_err>
+							<label>Last n error lines (newest first)</label>
+							<command_string>grep 'ERR (3)' '%1$s' | tail -n %2$s | tac</command_string>
+							<model>aoe_logviewer/command_shell</model>
+							<sort_order>20</sort_order>
+						</tail_err>
+						<duplicates>
+							<label>Find duplicates</label>
+							<command_string>cat '%1$s' | cut -c27- | sort | uniq -c | sort -rn | head -n %2$s</command_string>
+							<model>aoe_logviewer/command_shell</model>
+							<sort_order>30</sort_order>
+						</duplicates>
+					</commands>
+				</system.log>
+				<exception.log>
+					<label>exception.log</label>
+					<file_path>###LOGDIR###/exception.log</file_path>
+					<model>aoe_logviewer/log_file</model>
+					<sort_order>20</sort_order>
+					<commands>
+						<tail>
+							<label>Last n lines (newest first)</label>
+							<command_string>tail -n %2$s '%1$s' | tac</command_string>
+							<model>aoe_logviewer/command_shell</model>
+							<sort_order>10</sort_order>
+							<!--<disabled>1</disabled>-->
+						</tail>
+					</commands>
+				</exception.log>
+				<php_errorlog>
+					<label>PHP error log</label>
+					<file_path>###PHP_ERRORLOG###</file_path>
+					<model>aoe_logviewer/log_file</model>
+					<sort_order>30</sort_order>
+					<commands>
+						<tail>
+							<label>Last n lines (newest first)</label>
+							<command_string>tail -n %2$s '%1$s' | tac</command_string>
+							<model>aoe_logviewer/command_shell</model>
+							<sort_order>10</sort_order>
+							<!--<disabled>1</disabled>-->
+						</tail>
+					</commands>
+				</php_errorlog>
+			</logs>
+		</aoe_logviewer>
+
 	</global>
 
 	<admin>
@@ -31,7 +95,7 @@
 			<adminhtml>
 				<args>
 					<modules>
-						<Aoe_Scheduler before="Mage_Adminhtml">Aoe_Scheduler_Adminhtml</Aoe_Scheduler>
+						<Aoe_LogViewer before="Mage_Adminhtml">Aoe_LogViewer_Adminhtml</Aoe_LogViewer>
 					</modules>
 				</args>
 			</adminhtml>
@@ -39,15 +103,6 @@
 	</admin>
 
 	<adminhtml>
-		<translate>
-			<modules>
-				<aoe_logviewer>
-					<files>
-						<default>Aoe_Scheduler.csv</default>
-					</files>
-				</aoe_logviewer>
-			</modules>
-		</translate>
 		<layout>
 			<updates>
 				<aoe_logviewer>
