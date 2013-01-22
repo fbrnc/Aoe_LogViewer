@@ -53,3 +53,4 @@ before being displayed.
  - Add paging to log (this will be a challenge for the shell commands)
  - Add configurable row decorators that can parse the row and display them differently than plain text
  - Add scheduler function that can process logs, look for some keywords and add messages to the Magento backend.
+ - Add <use>system.log/tail</use> to reuse/reference command configurations instead of duplicating them. Overwriting parts should still be possible.
