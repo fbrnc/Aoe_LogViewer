@@ -1,7 +1,18 @@
 <?php
 
+/**
+ * Menu block
+ *
+ * @author Fabrizio Branca
+ * @since 2013-01-22
+ */
 class Aoe_LogViewer_Block_Adminhtml_Menu extends Mage_Adminhtml_Block_Template {
 
+	/**
+	 * Get logs and commands as json
+	 *
+	 * @return string
+	 */
 	public function getLogJson() {
 		$data = array();
 		$logCollection = Mage::getModel('aoe_logviewer/log_collection'); /* @var $logCollection Aoe_LogViewer_Model_Log_Collection */
@@ -15,6 +26,5 @@ class Aoe_LogViewer_Block_Adminhtml_Menu extends Mage_Adminhtml_Block_Template {
 		}
 		return json_encode($data);
 	}
-
 
 }

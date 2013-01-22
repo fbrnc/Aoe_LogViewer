@@ -43,3 +43,13 @@ before being displayed.
 	</global>
 </config>
 ```
+
+#### TODO / Ideas ####
+
+ - Reload log content via AJAX.
+ - Add a refresh button.
+ - Add a auto-refresh function.
+ - Make number of rows configurarable
+ - Add paging to log (this will be a challenge for the shell commands)
+ - Add configurable row decorators that can parse the row and display them differently than plain text
+ - Add scheduler function that can process logs, look for some keywords and add messages to the Magento backend.

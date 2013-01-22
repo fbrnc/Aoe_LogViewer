@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * Shell command
+ *
+ * @author Fabrizio Branca
+ * @since 2013-01-22
+ *
  * @method setCommandString
  * @method getCommandString
  */

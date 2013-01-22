@@ -1,7 +1,16 @@
 <?php
 
+/**
+ * Abstract collection used to load items from xml config
+ *
+ * @author Fabrizio Branca
+ * @since 2013-01-22
+ */
 abstract class Aoe_LogViewer_Model_AbstractCollection extends Varien_Data_Collection {
 
+	/**
+	 * @var bool
+	 */
 	protected $_dataLoaded = false;
 
 	/**
@@ -28,7 +37,7 @@ abstract class Aoe_LogViewer_Model_AbstractCollection extends Varien_Data_Collec
 				Mage::throwException(sprintf('No model defined for node "%s"'), $id);
 			}
 
-			$item = Mage::getModel($node->model); /* @var $item Aoe_LogViewer_Model_Command_Abstract */
+			$item = Mage::getModel($node->model); /* @var $item Varien_Object */
 
 			if (!$item) {
 				Mage::throwException(sprintf('Error while creating model "%s"', $node->model));
@@ -42,15 +51,14 @@ abstract class Aoe_LogViewer_Model_AbstractCollection extends Varien_Data_Collec
 				$item->setDataUsingMethod($field, $value);
 			}
 
+			$this->preProcessItem($item);
+
 			if ($this->checkItem($item)) {
 				$this->addItem($item);
 			}
 		}
-
 		uasort($this->_items, array($this, 'sortItems'));
-
 		$this->_dataLoaded = true;
-
 		return $this;
 	}
 
@@ -78,7 +86,7 @@ abstract class Aoe_LogViewer_Model_AbstractCollection extends Varien_Data_Collec
 	}
 
 	/**
-	 * Overwrite this method to do any pre-processing and/or prevent this item from being added to the collection
+	 * Prevent this item from being added to the collection
 	 * by return false.
 	 *
 	 * @param Varien_Object $item
@@ -88,6 +96,19 @@ abstract class Aoe_LogViewer_Model_AbstractCollection extends Varien_Data_Collec
 		return true;
 	}
 
+	/**
+	 * Overwrite this method to do any pre-processing
+	 *
+	 * @param Varien_Object $item
+	 */
+	public function preProcessItem(Varien_Object $item) {
+	}
+
+	/**
+	 * Get xml path for loading items from xml config
+	 *
+	 * @return string
+	 */
 	abstract public function getXmlPath();
 
 }
