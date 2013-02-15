@@ -2,5 +2,4 @@ app/code/community/Aoe/LogViewer/								app/code/community/Aoe/LogViewer/
 app/etc/modules/*												app/etc/modules/
 app/design/adminhtml/default/default/template/aoe_logviewer/	app/design/adminhtml/default/default/template/aoe_logviewer/
 app/design/adminhtml/default/default/layout/aoe_logviewer/		app/design/adminhtml/default/default/layout/aoe_logviewer/
-skin/adminhtml/default/default/aoe_logviewer/					skin/adminhtml/default/default/aoe_logviewer/
 # var/connect/*													var/connect/
